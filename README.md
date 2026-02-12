@@ -73,7 +73,6 @@ How to Use
 1️⃣ Hide a File Inside an Image
 python secret_pixel.py hide host.png secret.txt mypublickey.pem output.png
 
-
 Parameters:
 
 host.png – Cover image (PNG/BMP/TIFF recommended)
