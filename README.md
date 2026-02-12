@@ -1,73 +1,134 @@
-# steganography
-steganography
-**steganography – Easy-to-Use Image Hiding Tool**  
+Steganography – Easy-to-Use Image Hiding Tool (Stego)
 
-Stego is a smart tool that lets you **hide secret files inside images** without anyone noticing. It uses **strong encryption** and clever tricks to keep your data safe and undetectable.  
+Stego is a smart and secure tool that lets you hide secret files inside images without anyone noticing.
+It combines strong cryptography with AI-assisted steganography to keep your data private, protected, and hard to detect.
 
-### **Key Features**  
-✔ **Strong Protection** – Your hidden file is locked with **military-grade encryption (AES-256 + RSA)**. Only someone with the right private key can unlock it.  
-✔ **Compression** – Shrinks your file before hiding it, making it harder to detect.  
-✔ **Smart Hiding Technique** – Scatters hidden data randomly in the image (using **LSB steganography**) so it doesn’t look suspicious.  
-✔ **Keeps Filenames** – When you extract the file, it remembers the original name.  
-✔ **Works Everywhere** – Runs on Windows, Mac, and Linux (just needs Python).  
+Key Features
 
----  
+✔ Strong Protection
+Your hidden file is encrypted using AES-256 + RSA, the same standards used in banking and government systems.
+Only someone with the correct private key can extract the data.
 
-### **How to Install**  
-1. **Download Stego**:  
-   ```sh
-   pip install -r requirements.txt
-   ```  
-2. **Generate Encryption Keys** (like a password pair):  
-   - Run:  
-     ```sh
-     python generate_keys.py
-     ```  
-   - Enter a **strong passphrase** (this protects your private key).  
-   - Two files will be created:  
-     - `myprivatekey.pem` (keep this **secret!**)  
-     - `mypublickey.pem` (share this to let others hide files for you).  
+✔ Compression
+Files are compressed before hiding, reducing size and lowering detection risk.
 
----  
+✔ AI-Assisted Adaptive LSB (NEW)
+Stego uses an AI-based texture analysis to intelligently choose safe pixels (edges and textured regions) for hiding data.
+This makes changes less noticeable and improves resistance to steganalysis.
 
-### **How to Use**  
+✔ Smart Hiding Technique (LSB Steganography)
+Hidden data is embedded using Least Significant Bit (LSB) modification, causing no visible change to the image.
 
-#### **1. Hide a File Inside an Image**  
-```sh
+✔ Preserves Filenames
+Extracted files automatically retain their original filenames.
+
+✔ Cross-Platform
+Works on Windows, macOS, and Linux using Python.
+
+AI-Assisted Adaptive LSB (How It Works)
+
+Instead of hiding data in random pixels only, Stego now:
+
+Analyzes the image using AI-based texture/variance analysis
+
+Identifies high-complexity regions (edges, noisy areas)
+
+Embeds data only in these safer pixels
+
+Uses the same AI logic during extraction for perfect recovery
+
+Why this matters
+
+Changes are harder for the human eye to notice
+
+Statistical steganalysis becomes more difficult
+
+Security is improved without changing the encryption logic
+
+This approach uses classical AI / machine-learning principles (feature extraction + decision logic), not heavy deep learning — making it fast, reliable, and exam-friendly.
+
+Installation
+
+Clone the repository and install dependencies:
+
+pip install -r requirements.txt
+
+Generate Encryption Keys
+
+Create a public/private key pair:
+
+python generate_keys.py
+
+
+You’ll be asked to enter a strong passphrase.
+
+This generates:
+
+myprivatekey.pem → Keep this secret
+
+mypublickey.pem → Safe to share
+
+How to Use
+
+1️⃣ Hide a File Inside an Image
 python secret_pixel.py hide host.png secret.txt mypublickey.pem output.png
-```  
-- `host.png` = The image you hide the file in.  
-- `secret.txt` = The file you want to hide.  
-- `mypublickey.pem` = Your public key (for encryption).  
-- `output.png` = The new image with the hidden file.  
 
-#### **2. Extract a Hidden File**  
-```sh
+
+Parameters:
+
+host.png – Cover image (PNG/BMP/TIFF recommended)
+
+secret.txt – File to hide
+
+mypublickey.pem – Public key for encryption
+
+output.png – Image containing the hidden file
+
+2️⃣ Extract a Hidden File
 python secret_pixel.py extract output.png myprivatekey.pem [extracted.txt]
-```  
-- `output.png` = The image with the hidden file.  
-- `myprivatekey.pem` = Your private key (to unlock the file).  
-- `[extracted.txt]` = (Optional) Name for the extracted file. If left blank, it uses the original filename.  
 
----  
 
-### **Why Stego is Safe & Hard to Detect**  
-- **Encryption**: Uses **AES-256 + RSA** (like banks and governments).  
-- **Random Hiding**: Data is scattered in the image using a secret pattern (seed).  
-- **Works Best with PNG/BMP/TIFF** (lossless formats).  
-- **Avoids Suspicion**: Hides data in a way that steganalysis tools (like `zsteg`) can’t easily find.  
+Parameters:
 
----  
+output.png – Image with hidden data
 
-### **Want to Help Improve Stego?**  
-You can:  
-- Report bugs or suggest features.  
-- Help with code improvements (send a **Pull Request**).  
-- Fix/improve documentation.  
+myprivatekey.pem – Private key for decryption
 
----  
+extracted.txt (optional) – Output filename
+(If omitted, the original filename is restored)
 
-### **Final Thoughts**  
-Stego is a **powerful yet simple** way to hide files inside images securely. Whether for privacy, security, or fun, it keeps your data **hidden and safe** from prying eyes.  
+🔐 Why Stego Is Secure & Hard to Detect
 
-🚀 **Get started now and hide your secrets like a pro!**
+Military-Grade Encryption
+AES-256 + RSA hybrid encryption protects data confidentiality.
+
+AI-Driven Pixel Selection
+AI selects visually complex regions, reducing detection risk.
+
+Randomized & Adaptive Embedding
+No predictable hiding pattern.
+
+Lossless Image Formats
+Best used with PNG, BMP, TIFF, or TGA to preserve hidden data.
+
+Steganalysis Resistant
+Difficult for tools like zsteg to detect hidden content.
+
+Want to Help Improve Stego?
+
+You’re welcome to:
+
+Report bugs or suggest new features
+
+Improve performance or security
+
+Enhance documentation
+
+Submit Pull Requests
+
+📝 Final Thoughts
+
+Stego combines cryptography + AI-assisted steganography to provide a powerful yet simple way to hide files inside images.
+Whether for privacy, security research, or learning, it keeps your data hidden, encrypted, and safe.
+
+🚀 Get started now and hide your secrets like a pro!
